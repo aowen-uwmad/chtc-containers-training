@@ -141,4 +141,155 @@ And
 
 ### Building your own Apptainer container
 
+Next, you'll build a simple container using Apptainer.
+
+Building a container can be an intensive process, like any software installation,
+so first you need to start an interactive session on the system.
+
+**HTC**
+
+```
+condor_submit -i interactive.sub
+```
+
+**HPC**
+
+```
+srun --mpi=pmix -n4 -N1 -t 240 -p int --pty bash
+```
+
+Once the interactive session has started, create a file called
+`container.def` with the following contents:
+
+```
+Bootstrap: docker
+From: python:3.13
+
+%post
+    python3 -m pip install cowsay
+```
+
+This file is the "definition" file for how Apptainer should 
+construct the container.
+
+* The first two lines tell Apptainer to use the `python:3.13` 
+  container that is already published on DockerHub.
+
+* The lines under the `%post` section are the commands that 
+  Apptainer should use to install additional software, in this case
+  the `cowsay` package that can be used to print messages using ASCII art.
+  (This section takes normal shell commands as instructions.)
+
+Now, still in the interactive job, run the following command:
+
+```
+apptainer build container.sif container.def
+```
+
+* The first argument of this command is desired name of the container image file.
+  For historic reasons, Apptainer uses the `.sif` extension to indicate an
+  Apptainer image file.
+
+* The second argument of this command is the name of the definition file that
+  you wrote, in this case, `container.def`.
+
+As the command runs, you'll see a variety of information printed to the screen.
+
+> First will be information about Apptainer downloading the Docker container 
+> from DockerHub.
+> Next, there will be the usual `pip install` output for installing the `cowsay` package,
+> which comes from Apptainer executing the commands in the `%post` section.
+> Finally, assuming no errors, Apptainer will create a single standalone file
+> (the `.sif` file).
+
+If everything works correctly, once the command completes there should be a new
+`container.sif` file in your current directory.
+
+### Testing the container
+
+While still in the interactive job (and assuming there is a `container.sif` file),
+run the following command:
+
+```
+apptainer shell -e container.sif
+```
+
+You'll see your prompt change from `[yourNetID@hostname ~]$ ` to `Apptainer> `.
+That means when you run a command, you will be using the operating system and
+software that is inside of the container image.
+
+You should be able to run the following command:
+
+```
+./version.sh python3
+```
+
+To test that the `cowsay` package is installed, run the following command:
+
+```
+python3 -c 'import cowsay; cowsay.cow("Hello, my name is Cow!")'
+```
+
+You should see the following message:
+
+```
+  ______________________
+| Hello, my name is Cow! |
+  ======================
+                      \
+                       \
+                         ^__^
+                         (oo)\_______
+                         (__)\       )\/\
+                             ||----w |
+                             ||     ||
+```
+
+### Relocating the container image
+
+If you still see `Apptainer> ` as your command prompt, enter `exit` to exit the
+running container.
+
+**HTC**
+
+The `/staging` system is the home for `.sif` files on the HTC system.
+
+Move the `container.sif` file into your staging directory:
+
+```
+mv container.sif /staging/YOUR_NETID/
+```
+
+If you do not have a staging directory, you can skip this step, and
+the file will be returned to your directory on the access point.
+BUT before using the container at scale, you need to first place the
+container in a staging directory.
+
+**HPC**
+
+The `/home` filesystem is the home for `.sif` files on the HPC system.
+
+Move the `container.sif` file into your home directory:
+
+```
+mv container.sif ~/
+```
+
+### Wrap up
+
+**Remember to exit your interactive job!**
+
+Now that you've built a container, you can use a similar procedure as
+we did in the beginning to use it in your calculation.
+
+We have quite a few guides about using containers on our website, and
+they should get you most of the way to creating a container with your
+software and using it in your large scale jobs.
+
+If you are looking for example definition files to use to build your 
+own container, see our [Recipes](https://github.com/chtc/recipes) repository.
+
+#### Apptainer guides
+
+#### Docker guides
 
