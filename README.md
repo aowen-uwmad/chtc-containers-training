@@ -286,10 +286,23 @@ We have quite a few guides about using containers on our website, and
 they should get you most of the way to creating a container with your
 software and using it in your large scale jobs.
 
-If you are looking for example definition files to use to build your 
-own container, see our [Recipes](https://github.com/chtc/recipes) repository.
+**Apptainer guides**
 
-#### Apptainer guides
+* Use, build containers on **HTC**: [https://chtc.cs.wisc.edu/uw-research-computing/apptainer-htc](https://chtc.cs.wisc.edu/uw-research-computing/apptainer-htc)
+* Use, build containers on **HPC**: [https://chtc.cs.wisc.edu/uw-research-computing/apptainer-hpc](https://chtc.cs.wisc.edu/uw-research-computing/apptainer-hpc)
+* Convert Docker container to Apptainer: [https://chtc.cs.wisc.edu/uw-research-computing/htc-docker-to-apptainer](https://chtc.cs.wisc.edu/uw-research-computing/htc-docker-to-apptainer)
+* Detailed guide to Apptainer definition files: [https://chtc.cs.wisc.edu/uw-research-computing/apptainer-build](https://chtc.cs.wisc.edu/uw-research-computing/apptainer-build)
+* Example of an advanced Apptainer definition file: [https://chtc.cs.wisc.edu/uw-research-computing/apptainer-htc-advanced-example](https://chtc.cs.wisc.edu/uw-research-computing/apptainer-htc-advanced-example)
 
-#### Docker guides
+**Docker guides**
+
+* Use Docker container on HTC: [https://chtc.cs.wisc.edu/uw-research-computing/docker-jobs](https://chtc.cs.wisc.edu/uw-research-computing/docker-jobs)
+* Build a Docker container locally: [https://chtc.cs.wisc.edu/uw-research-computing/docker-build](https://chtc.cs.wisc.edu/uw-research-computing/docker-build)
+* Test a Docker container locally: [https://chtc.cs.wisc.edu/uw-research-computing/docker-test](https://chtc.cs.wisc.edu/uw-research-computing/docker-test)
+
+**Recipes**
+
+* CHTC Recipes GitHub: [https://github.com/CHTC/recipes](https://github.com/CHTC/recipes)
+
+See also our "Quickstart" software guides: [https://chtc.cs.wisc.edu/uw-research-computing/software-overview-htc#quickstart](https://chtc.cs.wisc.edu/uw-research-computing/software-overview-htc#quickstart)
 
