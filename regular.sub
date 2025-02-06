@@ -1,0 +1,15 @@
+log = logs/regular.$(Cluster).log
+
+should_transfer_files = YES
+
+executable = version.sh
+arguments = python3
+output = regular.out
+error = regular.err
+
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
+
+queue
+

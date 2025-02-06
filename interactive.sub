@@ -1,0 +1,16 @@
+log = logs/interactive.$(Cluster).log
+
+should_transfer_files = YES
+
+executable = version.sh
+output = interactive.out
+error = interactive.err
+
++IsBuildJob = True
+
+request_cpus = 4
+request_memory = 16GB
+request_disk = 16GB
+
+queue
+
