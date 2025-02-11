@@ -1,6 +1,9 @@
 # CHTC Container Training
 
 The files in this repository are for the CHTC Container Training.
+Corresponding slides:
+
+* [Feb. 11, 2025](https://docs.google.com/presentation/d/10CD4K_xGjFKkOYV-AA0NPOpMPCNusg77-lk1UgUY57g/edit?usp=sharing)
 
 ## Files
 
